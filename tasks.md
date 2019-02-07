@@ -2,4 +2,4 @@
 ## Overview
 * List of posts
 * Sum of list
-* Name property on post
+* Name property on post 
