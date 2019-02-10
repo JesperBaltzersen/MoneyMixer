@@ -1,0 +1,47 @@
+﻿@page 
+@model PostsModel
+@{
+}
+
+@if (!string.IsNullOrEmpty(Model.Post?.Amount.ToString()))
+{
+    <div class="alert alert-success">Successfully posted @Model.Post.Amount</div>
+}
+
+<div>
+    <h1>New post:</h1>
+    <hr />
+    <div>
+        <form asp-page="Post" method="post">
+            <div>
+                <label asp-for="Post.Amount">Amount</label>
+                <input asp-for="Post.Amount" />
+            </div>
+            <div>
+                <label asp-for="Post.Description">Description</label>
+                <input asp-for="Post.Description" />
+            </div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+
+</div>
+
+@foreach (var post in Model.postsList)
+{
+    <div>
+        <h3>@post</h3>
+    </div>
+}
+<div>
+    <form method="post">
+        <input type="text" name="newPost">
+        <input type="submit">
+    </form>
+</div>
+<div>
+    <p>Hello</p>
+    <p>@Model.postsList.FirstOrDefault(x=>x.Amount > 1).Amount</p>
+    <p></p>
+    <p>syyyygt</p>
+</div>

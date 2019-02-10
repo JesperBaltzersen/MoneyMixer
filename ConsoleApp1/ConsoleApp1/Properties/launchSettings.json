@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleApp1": {
+      "commandName": "Project",
+      "workingDirectory": "F:\\_private\\MoneyMixer\\ConsoleApp1\\ConsoleApp1"
+    }
+  }
+}

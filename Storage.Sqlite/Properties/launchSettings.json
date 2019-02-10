@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Storage.Sqlite": {
+      "commandName": "Project",
+      "workingDirectory": "F:\\_private\\MoneyMixer"
+    }
+  }
+}
