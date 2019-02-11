@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
+using System.IO;
 
 namespace ConsoleApp1
 {
@@ -13,9 +14,10 @@ namespace ConsoleApp1
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var ass = Assembly.GetExecutingAssembly();
-            
-            optionsBuilder.UseSqlite("Data Source=blogging.db");
+            var ass = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var path = Path.Join(ass, "blogging.db");
+            var dataStr = "Data Source=" + path;
+            optionsBuilder.UseSqlite(dataStr);
         }
     }
 }

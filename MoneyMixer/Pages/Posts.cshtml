@@ -16,10 +16,12 @@
             <div>
                 <label asp-for="Post.Amount">Amount</label>
                 <input asp-for="Post.Amount" />
+                <span asp-validation-for="Post.Amount"></span>
             </div>
             <div>
                 <label asp-for="Post.Description">Description</label>
                 <input asp-for="Post.Description" />
+                <span asp-validation-for="Post.Description"></span>
             </div>
             <button type="submit">Add</button>
         </form>
@@ -30,7 +32,7 @@
 @foreach (var post in Model.postsList)
 {
     <div>
-        <h3>@post</h3>
+        <h3>@post.Amount</h3>
     </div>
 }
 <div>

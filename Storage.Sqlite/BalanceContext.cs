@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Persistance.Sqlite.Models;
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace Persistance.Sqlite
 {
@@ -12,7 +14,13 @@ namespace Persistance.Sqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=balancesheet.db");
+            //optionsBuilder.UseSqlite("Data Source=balancesheet.db");
+            var ass = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var path = Path.Join(ass, "balancesheet.db");
+            var dataStr = "Data Source=" + path;
+            optionsBuilder.UseSqlite(dataStr);
         }
+
+
     }
 }

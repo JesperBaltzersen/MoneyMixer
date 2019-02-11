@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ConsoleApp1;
-using Delonomi.Models;
-//using Delonomi.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Persistance.Sqlite;
+using Persistance.Sqlite.Models;
 
 namespace Delonomi.Pages
 {
@@ -29,16 +28,29 @@ namespace Delonomi.Pages
             //{
 
             //}
-            var temp = new BloggingContext();
-            using (var db = new BloggingContext())
+            //var temp = new BloggingContext();
+            //using (var db = new BloggingContext())
+            //{
+            //    db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+            //    var count = db.SaveChanges();
+            //    foreach (var blog in db.Blogs)
+            //    {
+            //        Console.WriteLine(" - {0}", blog.Url);
+            //    }
+            //    var allBlogs = db.Blogs.ToList();
+            //}
+
+            using (var db = new BalanceContext())
             {
-                db.Blogs.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+                db.Posts.Add(new Persistance.Sqlite.Models.Post { Amount = 100, Description = "hello", Id=new Guid() });
                 var count = db.SaveChanges();
-                foreach (var blog in db.Blogs)
+                foreach (var post in db.Posts)
                 {
-                    Console.WriteLine(" - {0}", blog.Url);
+                    Console.WriteLine(" - {0}", post.Amount);
+                    postsList.Add(new Post { Amount = post.Amount, Description = post.Description });
                 }
-                var allBlogs = db.Blogs.ToList();
+                var temp = db.Posts.First();
+                var allPosts = db.Posts.ToList();
             }
         }
 

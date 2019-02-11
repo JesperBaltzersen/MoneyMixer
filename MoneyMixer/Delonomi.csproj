@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\ConsoleApp1\ConsoleApp1.csproj" />
+    <ProjectReference Include="..\Storage.Sqlite\Persistance.Sqlite.csproj" />
   </ItemGroup>
 
 </Project>
