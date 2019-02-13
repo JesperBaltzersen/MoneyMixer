@@ -24,11 +24,11 @@
                 <div class="container">
                     <div class="navbar-header">
                         @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>*@
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>*@
                         <a asp-page="/Index" class="navbar-brand">Delonomi</a>
                     </div>
                     <div class="navbar-collapse collapse">
@@ -46,14 +46,18 @@
         <partial name="_CookieConsentPartial" />
 
 
-        <div class="main-content">
+        <div class="maincontent">
             <div class="container body-content">
                 @RenderBody()
-                <hr />
-                <footer>
-                    <p>&copy; 2019 - Delonomi</p>
-                </footer>
+
             </div>
+        </div>
+
+        <div class="footer">
+            <hr />
+            <footer>
+                <p>&copy; 2019 - Delonomi</p>
+            </footer>
         </div>
 
         <environment include="Development">

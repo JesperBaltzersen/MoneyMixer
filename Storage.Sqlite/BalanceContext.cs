@@ -20,7 +20,6 @@ namespace Persistance.Sqlite
             var dataStr = "Data Source=" + path;
             optionsBuilder.UseSqlite(dataStr);
         }
-
-
     }
 }
+    

@@ -9,8 +9,8 @@ using Persistance.Sqlite;
 namespace Persistance.Sqlite.Migrations
 {
     [DbContext(typeof(BalanceContext))]
-    [Migration("20190209211927_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190211214156_newInit")]
+    partial class newInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace Persistance.Sqlite.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028");
 
-            modelBuilder.Entity("Storage.Sqlite.Models.BalanceSheet", b =>
+            modelBuilder.Entity("Persistance.Sqlite.Models.BalanceSheet", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -30,27 +30,33 @@ namespace Persistance.Sqlite.Migrations
                     b.ToTable("BalanceSheets");
                 });
 
-            modelBuilder.Entity("Storage.Sqlite.Models.Post", b =>
+            modelBuilder.Entity("Persistance.Sqlite.Models.Post", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Amount");
+                    b.Property<double>("Amount");
 
                     b.Property<Guid?>("BalanceSheetId");
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("ImgLocation");
+
                     b.Property<string>("LinkedFiles");
+
+                    b.Property<Guid?>("OwnerId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BalanceSheetId");
 
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("Storage.Sqlite.Models.User", b =>
+            modelBuilder.Entity("Persistance.Sqlite.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -59,33 +65,29 @@ namespace Persistance.Sqlite.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<Guid?>("PostId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BalanceSheetId");
 
-                    b.HasIndex("PostId");
-
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Storage.Sqlite.Models.Post", b =>
+            modelBuilder.Entity("Persistance.Sqlite.Models.Post", b =>
                 {
-                    b.HasOne("Storage.Sqlite.Models.BalanceSheet")
+                    b.HasOne("Persistance.Sqlite.Models.BalanceSheet")
                         .WithMany("Posts")
                         .HasForeignKey("BalanceSheetId");
+
+                    b.HasOne("Persistance.Sqlite.Models.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
-            modelBuilder.Entity("Storage.Sqlite.Models.User", b =>
+            modelBuilder.Entity("Persistance.Sqlite.Models.User", b =>
                 {
-                    b.HasOne("Storage.Sqlite.Models.BalanceSheet")
+                    b.HasOne("Persistance.Sqlite.Models.BalanceSheet")
                         .WithMany("Users")
                         .HasForeignKey("BalanceSheetId");
-
-                    b.HasOne("Storage.Sqlite.Models.Post")
-                        .WithMany("CreatingUser")
-                        .HasForeignKey("PostId");
                 });
 #pragma warning restore 612, 618
         }

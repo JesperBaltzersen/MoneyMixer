@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing;
 using Persistance.Sqlite;
 using Persistance.Sqlite.Models;
 
@@ -59,6 +61,13 @@ namespace Delonomi.Pages
             //postsList.Add(post);
             //var client = new BalanceSheetClient();
             //client.AddPost(post);
+        }
+    }
+    public class PostConstraint : IRouteConstraint
+    {
+        public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
+        {
+            throw new NotImplementedException();
         }
     }
 }
