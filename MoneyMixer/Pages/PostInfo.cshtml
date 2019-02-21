@@ -1,0 +1,20 @@
+﻿@page
+@model Delonomi.Pages.PostInfoModel
+@{
+}
+
+<div>
+    <h1>Post:</h1>
+</div>
+<div>
+    @if(@Model.Post.CreateDate != null){
+        <h1>@Model.Post.CreateDate?</h1>
+    }else{
+        <h1>There's no date associated with this post</h1>
+    }
+
+</div>
+
+<div>
+
+</div>

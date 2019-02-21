@@ -9,22 +9,21 @@
     <div class="alert alert-success">Successfully posted @Model.Post.Amount</div>
 }
 
-<div id="postsform">
-    <hr />
-    <div>
-        <form asp-page="Post" method="post" style="margin-bottom:20px">
+<div id="postswrapper">
+    <div id="postsform">
+        <form asp-page="Post" id="asppostpage" method="post">
             <div id="postsinput">
-                <label asp-for="Post.Amount" style="float:left">Amount</label>
-                <input asp-for="Post.Amount" />
+                <label asp-for="Post.Amount" id="postlabel">Amount</label>
+                <input asp-for="Post.Amount" id="postinput"  />
                 <span asp-validation-for="Post.Amount" id="inputvalidation"></span>
             </div>
             <div id="postsinput">
-                <label asp-for="Post.Description" style="float:left">Description</label>
-                <input asp-for="Post.Description" />
+                <label asp-for="Post.Description" id="postlabel">Description</label>
+                <input asp-for="Post.Description" id="postinput"/>
                 <span asp-validation-for="Post.Description" id="inputvalidation"></span>
             </div>
-            <div>
-                <button type="button" class="btn btn-success">Add</button>
+            <div >
+                <button type="submit" class="btn btn-success" style="margin-top:10px;">Add</button>
             </div>
         </form>
     </div>
@@ -34,7 +33,10 @@
 <div id="postslist">
     @foreach (var post in Model.postsList)
     {
-        <div id="postsdiv"><h3 id="post" style="background-color:aqua;">@post.Amount</h3></div>
+        <div id="postsdiv">
+            <a id="post" asp-page="PostInfo" asp-route-id="@post.Id">@post.Amount</a> 
+
+        </div>
     }
 </div>
 

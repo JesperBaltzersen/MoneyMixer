@@ -35,7 +35,8 @@ namespace Delonomi
             services.AddMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddRazorPagesOptions(options =>
             {
-                options.Conventions.AddPageRoute("/posts", "home");
+                options.Conventions.AddPageRoute("/posts", "");
+
             });
 
             //services.AddDbContext<BloggingContext>(options => options.UseSqlite)

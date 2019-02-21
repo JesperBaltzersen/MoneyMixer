@@ -1,60 +1,91 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
 for details on configuring this project to bundle and minify static web assets. */
-.wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 0.5fr 1fr;
-    grid-template-areas: "posttitle posttitle posttitle" ". postlist ." ". postfooter ."
-}
 
-.masterheader {
-    grid-area: posttitle;
-}
+@media only screen and (max-width: 9000px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: ". posttitle ." ". postlist ." ". postfooter ."
+    }
 
-.maincontent {
-    grid-area: postlist;
-}
+    .masterheader {
+        grid-area: posttitle;
+    }
 
-.footer {
-    grid-area: postfooter;
-}
+    .maincontent {
+        grid-area: postlist;
+    }
 
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-    display: grid;
-}
+    .footer {
+        grid-area: postfooter;
+    }
 
-#inputvalidation {
-    text-align: right;
-    color: red;
-}
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        display: grid;
+    }
 
-#postslist {
-    display:inline-block;
-}
+    #inputvalidation {
+        text-align: right;
+        color: red;
+    }
 
-#post {
-    text-align:right;
-    display:block;
-}
+    #postswrapper {
+        text-align:center;
+    }
 
-#postsdiv {
-    width: 200px;
-    display: block;
-    background-color: #eee;
-    margin-left: auto;
-    margin-right: auto;
-}
+    #postsform {
+        display:inline-block;
+    }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+    #asppostpage {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        /*text-align:center;*/
+    }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+    #postlabel {
+        display:block;
+        text-align:left;
+        margin-top: 1em;
+    }
+
+    #postinput {
+        display: block;
+    }
+
+    #postslist {
+        justify-content: center;
+        align-items: center;
+    }
+
+    #postsdiv {
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    #post {
+        text-align: right;
+        display: inline-block;
+        font-size: large;
+        color: black;
+    }
+
+
+
+    /* Wrapping element */
+    /* Set some basic padding to keep content from hitting the edges */
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* QR code generator */
+    #qrCode {
+        margin: 15px;
+    }
 }
