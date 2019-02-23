@@ -28,15 +28,23 @@ for details on configuring this project to bundle and minify static web assets. 
     }
 
     #inputvalidation {
-        text-align: right;
+        text-align: left;
         color: red;
+        display: block;
+        word-wrap: break-word;
+        /*width set by js fixWidthOfValidationSpan*/
     }
 
+    /*Post form*/
     #postswrapper {
         text-align:center;
     }
 
     #postsform {
+        display:inline-block;
+    }
+
+    #postblock {
         display:inline-block;
     }
 
@@ -56,6 +64,12 @@ for details on configuring this project to bundle and minify static web assets. 
         display: block;
     }
 
+    .imageupload::after {
+        content: "lsh";
+        background-color:white;
+    }
+
+    /*post list*/
     #postslist {
         justify-content: center;
         align-items: center;
@@ -75,7 +89,13 @@ for details on configuring this project to bundle and minify static web assets. 
         color: black;
     }
 
+    #postinfomemberlabel {
+        
+    }
 
+    #postinfomemberlabel {
+        font-family:
+    }
 
     /* Wrapping element */
     /* Set some basic padding to keep content from hitting the edges */

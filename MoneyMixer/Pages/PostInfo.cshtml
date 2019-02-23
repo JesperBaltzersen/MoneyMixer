@@ -3,18 +3,34 @@
 @{
 }
 
-<div>
-    <h1>Post:</h1>
-</div>
-<div>
-    @if(@Model.Post.CreateDate != null){
-        <h1>@Model.Post.CreateDate?</h1>
-    }else{
-        <h1>There's no date associated with this post</h1>
-    }
+<div id="postswrapper">
+    <div id="postblock">
+        <h2>Post</h2>
+        <button class="btn btn-danger" onclick="makeEditable()">Edit content</button>
+        <hr />
+        @if (@Model.Post != null)
+        {
+            <p id="postinfomemberlabel"><b>Created:</b></p>
+            if (@Model.Post.CreateDate != null)
+            {
+                <p id="postinfomemberdata">@Model.Post.CreateDate.ToShortDateString()</p>
+            }
 
-</div>
+            <p id="postinfomemberlabel"><b>Amount:</b></p>
+            <p id="postinfomemberdata">@Model.Post.Amount</p>
 
-<div>
+            <p id="postinfomemberlabel"><b>Description:</b></p>
 
+            if (@Model.Post.Description != null)
+            {
+                <p id="postinfomemberdata">@Model.Post.Description</p>
+            }
+            <p id="postinfomemberlabel"><b>Owner:</b></p>
+
+            if (@Model.Post.Owner != null)
+            {
+                <p id="postinfomemberdata">@Model.Post.Owner</p>
+            }
+        }
+    </div>
 </div>

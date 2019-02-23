@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Routing;
 using Persistance.Sqlite;
 using Persistance.Sqlite.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Delonomi.Pages
 {
@@ -20,6 +20,13 @@ namespace Delonomi.Pages
         [BindProperty]
         public Post Post { get; set; }
 
+        private IHostingEnvironment _hostingEnvironment;
+
+        public PostsModel(IHostingEnvironment environment)
+        {
+            _hostingEnvironment = environment;
+        }
+
         public void OnGet()
         {
             using (var db = new BalanceContext())
@@ -32,19 +39,29 @@ namespace Delonomi.Pages
             postsList.Reverse();
         }
 
-        public void OnPost(Post post)
+        public IActionResult OnPost(Post post)
         {
-         
-            using (var db = new BalanceContext())
+            if (ModelState.IsValid)
             {
-                post.CreateDate = DateTime.Now;
-                db.Posts.Add(post);
-                var count = db.SaveChanges();
-                // return success/failure based on adding post
-                // return updated list of posts
-                // clear input form if successful
-                
+                if (post.Image != null)
+                {
+                    //var file = Path.Combine(_hostingEnvironment.ContentRootPath, "uploads");
+                }
+
+                using (var db = new BalanceContext())
+                {
+                    post.CreateDate = DateTime.Now;
+                    db.Posts.Add(post);
+                    var count = db.SaveChanges();
+                    // return success/failure based on adding post
+                    // return updated list of posts
+                    // clear input form if successful       
+                }
+                return RedirectToPage("Posts");
             }
+
+
+            return Page();
         }
     }
 }

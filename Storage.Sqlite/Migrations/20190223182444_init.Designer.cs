@@ -9,8 +9,8 @@ using Persistance.Sqlite;
 namespace Persistance.Sqlite.Migrations
 {
     [DbContext(typeof(BalanceContext))]
-    [Migration("20190211214156_newInit")]
-    partial class newInit
+    [Migration("20190223182444_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,8 @@ namespace Persistance.Sqlite.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Slug");
 
                     b.HasKey("Id");
 
@@ -39,7 +41,11 @@ namespace Persistance.Sqlite.Migrations
 
                     b.Property<Guid?>("BalanceSheetId");
 
+                    b.Property<DateTime>("CreateDate");
+
                     b.Property<string>("Description");
+
+                    b.Property<DateTime>("EditDate");
 
                     b.Property<string>("ImgLocation");
 

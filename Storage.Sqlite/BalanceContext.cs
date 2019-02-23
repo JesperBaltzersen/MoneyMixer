@@ -14,11 +14,19 @@ namespace Persistance.Sqlite
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlite("Data Source=balancesheet.db");
             var ass = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            var path = Path.Join(ass, "balancesheet.db");
-            var dataStr = "Data Source=" + path;
-            optionsBuilder.UseSqlite(dataStr);
+            if (ass.Contains("bin"))
+            {
+                var path = Path.Join(ass, "balancesheet.db");
+                var dataStr = "Data Source=" + path;
+                optionsBuilder.UseSqlite(dataStr);
+            }
+            else
+            {
+                optionsBuilder.UseSqlite("Data Source=balancesheet.db");
+            }
+
+
         }
     }
 }

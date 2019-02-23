@@ -4,25 +4,43 @@
 @{
 }
 
-@if (!string.IsNullOrEmpty(Model.Post?.Amount.ToString()))
-{
-    <div class="alert alert-success">Successfully posted @Model.Post.Amount</div>
-}
+
 
 <div id="postswrapper">
+    @if (decimal.TryParse(Model.Post?.Amount.ToString(), out var number))
+    {
+        <div class="alert alert-success">Successfully posted @Model.Post.Amount</div>
+    }
+
     <div id="postsform">
         <form asp-page="Post" id="asppostpage" method="post">
             <div id="postsinput">
                 <label asp-for="Post.Amount" id="postlabel">Amount</label>
-                <input asp-for="Post.Amount" id="postinput"  />
+                <input asp-for="Post.Amount" id="postinput" />
                 <span asp-validation-for="Post.Amount" id="inputvalidation"></span>
             </div>
             <div id="postsinput">
                 <label asp-for="Post.Description" id="postlabel">Description</label>
-                <input asp-for="Post.Description" id="postinput"/>
+                <input asp-for="Post.Description" id="postinput" />
                 <span asp-validation-for="Post.Description" id="inputvalidation"></span>
             </div>
-            <div >
+            <div id="postsinput">
+                @*<label asp-for="Post.Image" id="postlabel">Image</label>*@
+                @*<input asp-for="Post.Image" type="file" id="postinput" class="imageupload"/>*@
+                @*<span asp-validation-for="Post.Description" id="inputvalidation"></span>*@
+            </div>
+            <div id="postsinput">
+                <label asp-for="Post.Description" id="postlabel">Description</label>
+                <input asp-for="Post.Description" id="postinput" />
+                <span asp-validation-for="Post.Description" id="inputvalidation"></span>
+            </div>
+            <div id="postsinput">
+                <label asp-for="Post.Description" id="postlabel">Description</label>
+                <input asp-for="Post.Description" id="postinput" />
+                <span asp-validation-for="Post.Description" id="inputvalidation"></span>
+            </div>
+
+            <div>
                 <button type="submit" class="btn btn-success" style="margin-top:10px;">Add</button>
             </div>
         </form>

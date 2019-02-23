@@ -23,6 +23,8 @@ namespace Persistance.Sqlite.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("Slug");
+
                     b.HasKey("Id");
 
                     b.ToTable("BalanceSheets");
@@ -37,7 +39,11 @@ namespace Persistance.Sqlite.Migrations
 
                     b.Property<Guid?>("BalanceSheetId");
 
+                    b.Property<DateTime>("CreateDate");
+
                     b.Property<string>("Description");
+
+                    b.Property<DateTime>("EditDate");
 
                     b.Property<string>("ImgLocation");
 

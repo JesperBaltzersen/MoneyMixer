@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,14 @@ namespace Delonomi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            Environment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,8 +41,8 @@ namespace Delonomi
                 options.Conventions.AddPageRoute("/posts", "");
 
             });
-
-            //services.AddDbContext<BloggingContext>(options => options.UseSqlite)
+            
+            services.AddSingleton<IHostingEnvironment>(Environment);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
