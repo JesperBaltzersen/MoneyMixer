@@ -30,5 +30,6 @@ function setNoTextLabelImageUpload() {
 }
 
 window.onload = fixWidthOfValidationSpan;
+window.onload = setNoTextLabelImageUpload;
 
 

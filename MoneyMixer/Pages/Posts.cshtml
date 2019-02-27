@@ -13,7 +13,7 @@
     }
 
     <div id="postsform">
-        <form asp-page="Post" id="asppostpage" method="post">
+        <form asp-page="Post" id="asppostpage" method="post" enctype="multipart/form-data">
             <div id="postsinput">
                 <label asp-for="Post.Amount" id="postlabel">Amount</label>
                 <input asp-for="Post.Amount" id="postinput" />
@@ -25,9 +25,14 @@
                 <span asp-validation-for="Post.Description" id="inputvalidation"></span>
             </div>
             <div id="postsinput">
-                @*<label asp-for="Post.Image" id="postlabel">Image</label>*@
-                @*<input asp-for="Post.Image" type="file" id="postinput" class="imageupload"/>*@
+                @*<label asp-for="Post.Image" id="postlabel" onclick="document.getElementById('fileinput').click();">Image</label>
+                    <input asp-for="Post.Image" type="file" id="fileinput" class="imageupload hidden"/>
+                    <img src="" height="200" alt="Image preview..." />*@
                 @*<span asp-validation-for="Post.Description" id="inputvalidation"></span>*@
+            </div>
+            <div>
+                <label asp-for="Post.Image"></label>
+                <input asp-for="Post.Image" type="file" name="files" />
             </div>
             <div id="postsinput">
                 <label asp-for="Post.Description" id="postlabel">Description</label>
@@ -45,6 +50,21 @@
             </div>
         </form>
     </div>
+
+    <form method="post" enctype="multipart/form-data" action="/AddImage"> @*asp-controller="Posts" asp-action="AddImage"*@
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Upload one or more files using this form:</p>
+                <input type="file" name="files" multiple />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Upload" />
+            </div>
+        </div>
+    </form>
+
     <hr style="margin-top:10px" />
 </div>
 

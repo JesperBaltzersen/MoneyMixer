@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Persistance.Sqlite;
@@ -6,6 +7,7 @@ using Persistance.Sqlite.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Delonomi.Pages
@@ -39,7 +41,7 @@ namespace Delonomi.Pages
             postsList.Reverse();
         }
 
-        public IActionResult OnPost(Post post)
+        public async Task<IActionResult> OnPost(Post post)
         {
             if (ModelState.IsValid)
             {
@@ -57,11 +59,59 @@ namespace Delonomi.Pages
                     // return updated list of posts
                     // clear input form if successful       
                 }
+
+                var jason = await GetPostImage(post.Image);
+
                 return RedirectToPage("Posts");
             }
 
 
             return Page();
+        }
+
+        public async Task<IActionResult> GetPostImage(IFormFile image)
+        {
+            var imagePath = _hostingEnvironment.WebRootFileProvider.GetFileInfo("images/").PhysicalPath;
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
+            if (image.Length > 0)
+            {
+                using (var stream = new FileStream(imagePath, FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+            }
+
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return new JsonResult("JSON");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddImage(List<IFormFile> files)
+        {
+            long size = files.Sum(f => f.Length);
+
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
+
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return new JsonResult("new jason");
         }
     }
 }
