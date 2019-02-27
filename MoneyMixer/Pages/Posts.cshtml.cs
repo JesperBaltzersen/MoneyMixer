@@ -60,7 +60,7 @@ namespace Delonomi.Pages
                     // clear input form if successful       
                 }
 
-                var jason = await GetPostImage(post.Image);
+                var jason = await GetPostImage();
 
                 return RedirectToPage("Posts");
             }
@@ -69,16 +69,16 @@ namespace Delonomi.Pages
             return Page();
         }
 
-        public async Task<IActionResult> GetPostImage(IFormFile image)
+        public async Task<IActionResult> GetPostImage()
         {
             var imagePath = _hostingEnvironment.WebRootFileProvider.GetFileInfo("images/").PhysicalPath;
             // full path to file in temp location
             var filePath = Path.GetTempFileName();
-            if (image.Length > 0)
+            if (Post.Image.Length > 0)
             {
                 using (var stream = new FileStream(imagePath, FileMode.Create))
                 {
-                    await image.CopyToAsync(stream);
+                    await Post.Image.CopyToAsync(stream);
                 }
             }
 
